@@ -46,10 +46,22 @@ task copyToLib(type: Copy) {
     from(zipTree("$projectDir/src/test/resources/AppiumWebDriver/java-client-6.1.0.jar"))
 }
 
-//TODO: implementar la entrada de las capabilities por el gradle
-task android (type: Test){
+task android601 (type: Test){
     systemProperties System.getProperties()
-    systemProperties['context'] = 'android'
+    systemProperties['context'] = 'android:6.0.1'
+    systemProperties['appium.hub'] = 'http://0.0.0.0:4723/wd/hub'
+    systemProperties['appium.deviceName'] = 'ALTEN Galaxy S5'
+    systemProperties['appium.platformVersion'] = '6.0.1'
+    testLogging.showStandardStreams = true
+    include "com/adidas/testRunner/TestRunner.class"
+}
+
+task android9 (type: Test){
+    systemProperties System.getProperties()
+    systemProperties['context'] = 'android:9'
+    systemProperties['appium.hub'] = 'http://0.0.0.0:4723/wd/hub'
+    systemProperties['appium.deviceName'] = 'ALTEN Galaxy S5'
+    systemProperties['appium.platformVersion'] = '6.0.1'
     testLogging.showStandardStreams = true
     include "com/adidas/testRunner/TestRunner.class"
 }
