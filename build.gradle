@@ -1,0 +1,70 @@
+group 'com.adidas.demoAppium'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.13")
+    }
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+configurations {
+    localDeps
+    localDeps.transitive = false
+}
+apply plugin: 'java'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    implementation 'net.serenity-bdd:serenity-gradle-plugin:2.0.13'
+    implementation 'net.serenity-bdd:serenity-junit:2.0.13'
+    implementation 'net.serenity-bdd:serenity-core:2.0.13'
+    implementation 'net.serenity-bdd:serenity-cucumber:1.9.20'
+    implementation 'io.appium:java-client:6.1.0'
+    localDeps 'io.appium:java-client:6.1.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+}
+
+gradle.startParameter.continueOnFailure = true
+
+task copyToLib(type: Copy) {
+    from configurations.localDeps
+    into "$projectDir/src/test/resources/AppiumWebDriver/"
+    from(zipTree("$projectDir/src/test/resources/AppiumWebDriver/java-client-6.1.0.jar"))
+}
+
+//TODO: implementar la entrada de las capabilities por el gradle
+task android (type: Test){
+    systemProperties System.getProperties()
+    systemProperties['context'] = 'android'
+    testLogging.showStandardStreams = true
+    include "com/adidas/testRunner/TestRunner.class"
+}
+
+//TODO: implementar la entrada de las capabilities por el gradle y hacer los test para iOS
+task ios (type: Test){
+    systemProperties System.getProperties()
+    systemProperties['context'] = 'iOS'
+    testLogging.showStandardStreams = true
+    include "com/adidas/testRunner/TestRunner.class"
+}
+test {
+    systemProperties System.getProperties()
+    systemProperties['context'] = 'android'
+    systemProperties['DRIVER_TYPE'] = 'android'
+    testLogging.showStandardStreams = true
+    include "com/adidas/testRunner/TestRunner.class"
+}
