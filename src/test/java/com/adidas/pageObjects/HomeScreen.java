@@ -32,7 +32,7 @@ public class HomeScreen extends PageObject {
         Assert.assertTrue("El titulo debería aparecer y estar enabled", titulo.isEnabled());
     }
 
-    public void menuButtom() {
+    public void menuButton() {
         panelButton.waitUntilClickable();
         Assert.assertTrue("El botón de inicio debería estar visible", panelButton.isVisible());
         Assert.assertTrue("El botón de inicio debería estar habilitado", panelButton.isEnabled());

@@ -16,7 +16,7 @@ public class AmazonSerenitySteps {
 
     @Step("When I click on the menu buttom")
     public void click_menu_button(){
-        amazonHome.menuButtom();
+        amazonHome.menuButton();
     }
 
     @Step("And click on Buscar por Departamento")
