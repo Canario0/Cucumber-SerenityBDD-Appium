@@ -1,3 +1,4 @@
+@F1
 Feature: Find by department and product category
 
   Scenario Outline: Amazon FindByDepartment
@@ -9,4 +10,3 @@ Feature: Find by department and product category
     Examples:
       | department  | section   |
       | Informática | Monitores |
-

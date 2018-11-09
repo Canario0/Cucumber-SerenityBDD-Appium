@@ -38,4 +38,14 @@ public class AmazonFindBy {
     public void iShouldSee(String option) {
         userSteps.i_should_see(option);
     }
+
+    @When("^I type \"([^\"]*)\" and enter$")
+    public void iInput(String product){
+        userSteps.i_type_and_enter(product);
+    }
+
+    @Then("^I check that there is a product with \"([^\"]*)\"$")
+    public void iCheckThatThereIsAProductWith(String brand) {
+        userSteps.check_that_i_enter_with(brand);
+    }
 }

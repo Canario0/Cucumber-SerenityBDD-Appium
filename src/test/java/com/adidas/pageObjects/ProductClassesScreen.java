@@ -1,8 +1,8 @@
 package com.adidas.pageObjects;
 
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
 import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.webdriver.WebDriverFacade;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +14,7 @@ public class ProductClassesScreen extends PageObject {
     private WebElement productOption;
     public ProductClassesScreen(WebDriver driver) {
         super(driver);
-        this.driver = driver;
+        this.driver = ((WebDriverFacade)driver).getProxiedDriver();
     }
 
     public void checkProductClasses(String option) {
