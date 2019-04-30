@@ -14,7 +14,7 @@ public class ProductClassesScreen extends PageObject {
     private WebElement productOption;
     public ProductClassesScreen(WebDriver driver) {
         super(driver);
-        this.driver = ((WebDriverFacade)driver).getProxiedDriver();
+        this.driver = driver;
     }
 
     public void checkProductClasses(String option) {

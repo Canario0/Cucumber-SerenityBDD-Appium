@@ -17,7 +17,7 @@ public class ResultsScreen extends PageObject {
 
     public ResultsScreen(WebDriver driver) {
         super(driver);
-        this.driver = ((WebDriverFacade)driver).getProxiedDriver();
+        this.driver = driver;
     }
 
     public void checkBrand(String brand) {

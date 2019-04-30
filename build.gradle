@@ -32,8 +32,8 @@ dependencies {
     implementation 'net.serenity-bdd:serenity-junit:2.0.13'
     implementation 'net.serenity-bdd:serenity-core:2.0.13'
     implementation 'net.serenity-bdd:serenity-cucumber:1.9.20'
-    implementation 'io.appium:java-client:6.1.0'
-    localDeps 'io.appium:java-client:6.1.0'
+    implementation 'io.appium:java-client:7.0.0'
+    localDeps 'io.appium:java-client:7.0.0'
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 }
@@ -43,7 +43,7 @@ gradle.startParameter.continueOnFailure = true
 task copyToLib(type: Copy) {
     from configurations.localDeps
     into "$projectDir/src/test/resources/AppiumWebDriver/"
-    from(zipTree("$projectDir/src/test/resources/AppiumWebDriver/java-client-6.1.0.jar"))
+    from(zipTree("$projectDir/src/test/resources/AppiumWebDriver/java-client-7.0.0.jar"))
 }
 
 task android601 (type: Test){
@@ -61,25 +61,18 @@ task android9 (type: Test){
     systemProperties System.getProperties()
     systemProperties['context'] = 'android:9'
     systemProperties['appium.platformName']= 'android'
-    systemProperties['appium.hub'] = 'http://0.0.0.0:4723/wd/hub'
+    systemProperties['appium.hub'] = 'http://172.18.65.113:4723/wd/hub'
     systemProperties['appium.deviceName'] = 'ALTEN Galaxy S5'
     systemProperties['appium.platformVersion'] = '6.0.1'
     testLogging.showStandardStreams = true
     include "com/adidas/testRunner/TestRunner.class"
 }
 
-//TODO: implementar la entrada de las capabilities por el gradle y hacer los test para iOS
-task ios (type: Test){
-    systemProperties System.getProperties()
-    systemProperties['context'] = 'iOS'
-    testLogging.showStandardStreams = true
-    include "com/adidas/testRunner/TestRunner.class"
-}
 test {
     systemProperties System.getProperties()
     systemProperties['context'] = 'android'
     systemProperties['appium.platformName']= 'android'
-    systemProperties['appium.hub'] = 'http://0.0.0.0:4723/wd/hub'
+    systemProperties['appium.hub'] = 'http://172.18.65.113:4723/wd/hub'
     systemProperties['appium.deviceName'] = 'ALTEN Galaxy S5'
     systemProperties['appium.platformVersion'] = '6.0.1'
     testLogging.showStandardStreams = true

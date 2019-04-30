@@ -33,7 +33,7 @@ public class HomeScreen extends PageObject {
 
     public HomeScreen(WebDriver driver) {
         super(driver);
-        this.driver = ((WebDriverFacade)driver).getProxiedDriver();
+        this.driver = driver;
     }
 
     public void checkApp() {
